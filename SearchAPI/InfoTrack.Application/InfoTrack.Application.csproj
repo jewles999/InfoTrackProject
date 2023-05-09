@@ -15,4 +15,8 @@
     <ProjectReference Include="..\InfoTrack.Domain\InfoTrack.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,7 @@
 using FluentValidation.AspNetCore;
 using InfoTrack.Application;
+using InfoTrack.Infrastructure;
+using InfoTrack.SearchAPI.Config;
 using System.Reflection;
 
 namespace SearchAPI
@@ -11,17 +13,22 @@ namespace SearchAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            var services = builder.Services;
 
-            builder.Services.AddControllers()
+            services.AddControllers()
                             .AddFluentValidation(options =>
                             {
                                 options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                             });
-            builder.Services.AddApplicationServices();
+            services.AddApplicationServices();
+            services.AddInfrastructureServices();
+
+            services.Configure<GoogleSettings>(
+                builder.Configuration.GetSection("GoogleSettings"));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
             var app = builder.Build();
 
