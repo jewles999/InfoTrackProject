@@ -475,3 +475,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/SearchAPI/InfoTrack.Application/bin/Debug/net6.0/InfoTrack.Application.dll
+/SearchAPI/InfoTrack.Application/bin/Debug/net6.0/InfoTrack.Application.pdb
+/SearchAPI/InfoTrack.Application/obj/Debug/net6.0/ref/InfoTrack.Application.dll
+/SearchAPI/InfoTrack.Application/obj/Debug/net6.0/refint/InfoTrack.Application.dll
+/SearchAPI/InfoTrack.Application/obj/Debug/net6.0/InfoTrack.Application.dll
+/SearchAPI/InfoTrack.Application/obj/Debug/net6.0/InfoTrack.Application.pdb
