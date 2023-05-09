@@ -8,6 +8,7 @@ namespace InfoTrack.Domain.Dto
         public SearchInput Input { get; set; } = default!;
         public string ParentDivPattern { get; set; } = default!;
         public string Url { get; set; } = default!;
+        public char ResultSeparator { get; set; } = ',';
 
     }
 }

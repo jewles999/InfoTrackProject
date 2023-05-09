@@ -33,19 +33,21 @@ namespace SearchAPI.Controllers
             {
                 return BadRequest(validationResult);
             }
+
             var url = _googleSettings.URL;
             var parentDiv = _googleSettings.PatternMatch;
+            parentDiv = parentDiv.Replace("&quot;", @"""");
 
             var dto = new SearchInputDto
             {
                 PageSource = string.Empty,
                 Input = input,
-                ParentDivPattern = parentDiv,
+                ParentDivPattern = @parentDiv,
                 Url = string.Concat(url, UrlEncoder.Default.Encode(input.SearchTerm))
             };
 
-            var res = _searchService.GetSearchResult(dto);
-            return Ok(res.Result);
+            var res = await _searchService.GetSearchResult(dto);
+            return Ok(res);
         }
     }
 }
