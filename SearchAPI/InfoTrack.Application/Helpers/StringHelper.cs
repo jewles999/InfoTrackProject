@@ -19,5 +19,10 @@ namespace InfoTrack.Application.Helpers
 
             return list.Count == 0 ? EmptyResult : string.Join(dto.ResultSeparator, list);
         }
+
+        public static string ReplaceQuot(string s)
+        {
+            return s.Replace("&quot;", @"""");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using InfoTrack.Application.Contracts.Infrastructure;
+using InfoTrack.Application.Helpers;
 using InfoTrack.Domain.Dto;
 using InfoTrack.Domain.InputModels;
 using InfoTrack.SearchAPI.Config;
@@ -9,7 +10,7 @@ using System.Text.Encodings.Web;
 
 namespace SearchAPI.Controllers
 {
-    [Route("api/[controller]/v1")]
+    [Route("api/[controller]")]
     [ApiController]
     public class SearchController : ControllerBase
     {
@@ -36,7 +37,7 @@ namespace SearchAPI.Controllers
 
             var url = _googleSettings.URL;
             var parentDiv = _googleSettings.PatternMatch;
-            parentDiv = parentDiv.Replace("&quot;", @"""");
+            parentDiv = StringHelper.ReplaceQuot(parentDiv);
 
             var dto = new SearchInputDto
             {
