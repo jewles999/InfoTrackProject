@@ -7,7 +7,7 @@ namespace InfoTrack.Application.Helpers
         private const string EmptyResult = "0";
         public static string GetReturnValue(SearchInputDto dto)
         {
-            var array = dto.PageSource.Split(new string[] { dto.ParentDivPattern }, StringSplitOptions.None);
+            var array = dto.PageSource.Split(new string[] { dto.ParentDivPattern }, StringSplitOptions.RemoveEmptyEntries);
             var list = new List<string>();
 
             if (array.Length == 0) return EmptyResult;

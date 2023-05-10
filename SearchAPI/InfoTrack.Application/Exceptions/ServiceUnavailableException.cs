@@ -3,7 +3,7 @@
     public class ServiceUnavailableException : Exception
     {
         public ServiceUnavailableException()
-            : base(CustomErrorMessages.ExceptionrMessages.SystemUnavailableMessage)
+            : base(CustomErrorMessages.ExceptionMessages.SystemUnavailableMessage)
         {
         }
     }
