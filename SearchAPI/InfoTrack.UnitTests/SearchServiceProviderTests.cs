@@ -37,7 +37,7 @@ namespace InfoTrack.UnitTests
         }
 
         [Fact]
-        public void InValid_Pattern_Throws_Error()
+        public void Invalid_Pattern_Throws_Error()
         {
             var input = new SearchInput
             {
