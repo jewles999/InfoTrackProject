@@ -15,13 +15,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoTrack.Domain", "InfoTra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfoTrack.Infrastructure", "InfoTrack.Infrastructure", "{168DE2E4-B7B9-4198-BB33-EBAF52EC9EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.Infrastructure", "InfoTrack.Infrastructure\InfoTrack.Infrastructure.csproj", "{956563BD-2CEA-46CD-979F-2077356911E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoTrack.Infrastructure", "InfoTrack.Infrastructure\InfoTrack.Infrastructure.csproj", "{956563BD-2CEA-46CD-979F-2077356911E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoTrack.UnitTests", "InfoTrack.UnitTests\InfoTrack.UnitTests.csproj", "{12ADD4AF-647E-4AFA-9F67-E1121C35DC19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfoTrack.Tests", "InfoTrack.Tests", "{491DAEF6-9848-44F2-8D32-0B3ADA92DBB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.IntegrationTests", "InfoTrack.IntegrationTests\InfoTrack.IntegrationTests.csproj", "{B763B91D-DC60-48D7-9A19-D0E68D1CEF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoTrack.IntegrationTests", "InfoTrack.IntegrationTests\InfoTrack.IntegrationTests.csproj", "{B763B91D-DC60-48D7-9A19-D0E68D1CEF2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{414A1E5E-B2B4-4B5D-947B-35924F97FE50}"
+	ProjectSection(SolutionItems) = preProject
+		index.html = index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{33C5D96E-410F-4B29-BC40-095BA5087DCB}"
+	ProjectSection(SolutionItems) = preProject
+		formModel.js = formModel.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +73,7 @@ Global
 		{956563BD-2CEA-46CD-979F-2077356911E4} = {168DE2E4-B7B9-4198-BB33-EBAF52EC9EEC}
 		{12ADD4AF-647E-4AFA-9F67-E1121C35DC19} = {491DAEF6-9848-44F2-8D32-0B3ADA92DBB6}
 		{B763B91D-DC60-48D7-9A19-D0E68D1CEF2F} = {491DAEF6-9848-44F2-8D32-0B3ADA92DBB6}
+		{33C5D96E-410F-4B29-BC40-095BA5087DCB} = {414A1E5E-B2B4-4B5D-947B-35924F97FE50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9E39428-136D-4E11-B4CC-C08E2376A670}
