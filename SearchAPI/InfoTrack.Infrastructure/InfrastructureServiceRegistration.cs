@@ -10,6 +10,7 @@ namespace InfoTrack.Infrastructure
             services.AddTransient<IWebSearcher, WebSearcher>();
             services.AddTransient<ISearchResultProcessor, SearchResultProcessor>();
             services.AddTransient<ISearchServiceProvider, SearchServiceProvider>();
+            services.AddTransient<INotifier, NotifierService>();
             return services;
         }
     }
