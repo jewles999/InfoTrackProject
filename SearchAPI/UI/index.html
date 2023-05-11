@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Infotrack Searcher</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="lib/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -26,23 +25,24 @@
                     <form data-bind="submit: submitForm">
                         <div class="form-group">
 
-                            <label class="label-left mb-1" for="keywords">Searching for keywords: <strong data-bind="text: SearchTerm"></strong></label>
+                            <label class="float-start mb-1" for="keywords">Searching for keywords: <strong data-bind="text: SearchTerm"></strong></label>
                             <input type="text" class="form-control mb-3" id="keywordsInput"
                                    required ="required"
                                    aria-describedby="keywordsHelp"
                                    placeholder="Enter search keywords"
-                                   data-bind="value: SearchTerm">
-                            <label class="label-left mb-1" for="domainInput">Search term: <strong data-bind="text: DomainName"></strong></label>
+                                   data-bind="textInput: SearchTerm">
+                            <label class="float-start mb-1" for="domainInput">Domain Name: <strong data-bind="text: DomainName"></strong></label>
                             <input type="text" class="form-control mb-3" id="domainInput"
                                    required ="required"
                                    aria-describedby="domainHelp"
                                    placeholder="Enter search term"
-                                   data-bind="value: DomainName">
+                                   data-bind="textInput: DomainName">
                             <button class="btn btn-primary px-5 mb-5 mt-5" type="submit">
                                 Search
                             </button>
                         </div>
                     </form>
+			        <p>Search Results: <span  data-bind="text: SearchResults"></span></p>
                 </div>
             </div>
         </main>
@@ -53,22 +53,36 @@
             var self = this;
             self.SearchTerm = ko.observable("efiling integration");
             self.DomainName = ko.observable("infotrack.com");
+	        self.SearchResults = ko.observable("nothing yet...");	
 
             self.submitForm = function () {
-                console.log(ko.toJSON(self));
+                let formData = {
+                    SearchTerm: self.SearchTerm,
+                    DomainName: self.DomainName
+                };
+
+                self.SearchResults("searching...");
                 $.ajax({
                     url: "https://localhost:7014/api/Search",
                     type: "POST",
-                    data: ko.toJSON(self),
+                    data: ko.toJSON(formData),
                     contentType: "application/json; charset=utf-8",
                     async: true,
                     success: function (result) {
                         if (result) {
-                            console.log(result);
+                            if (result == "0")
+                                self.SearchResults("No results found");
+                            else
+                                self.SearchResults(`Search term found at positions: ${result}`);
                         }
                     },
-                    error: function (err) {
-                        console.log(error);
+                    error: function (xhr, status, error) {
+                        let err = JSON.parse(xhr.responseText);
+                        let errArray = [];
+                        for (const property in err.errors) {
+                            errArray.push(`${property}: ${err.errors[property]}`);
+                        }
+                        self.SearchResults(errArray);
                     }
                 });
            }

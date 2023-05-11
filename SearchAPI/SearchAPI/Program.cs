@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using InfoTrack.Application;
+using InfoTrack.Application.Contracts.Infrastructure;
 using InfoTrack.Infrastructure;
 using InfoTrack.SearchAPI.Config;
 using System.Reflection;
@@ -22,6 +23,7 @@ namespace SearchAPI
                             });
             services.AddApplicationServices();
             services.AddInfrastructureServices();
+            services.AddTransient<ISearchDtoMapper, SearchDtoMapper>();
 
             services.Configure<GoogleSettings>(
                 builder.Configuration.GetSection("GoogleSettings"));

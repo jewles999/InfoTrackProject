@@ -1,12 +1,7 @@
 ﻿using FluentValidation;
 using InfoTrack.Application.Contracts.Infrastructure;
-using InfoTrack.Application.Helpers;
-using InfoTrack.Domain.Dto;
 using InfoTrack.Domain.InputModels;
-using InfoTrack.SearchAPI.Config;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using System.Text.Encodings.Web;
 
 namespace SearchAPI.Controllers
 {
@@ -16,13 +11,13 @@ namespace SearchAPI.Controllers
     {
         private readonly IValidator<SearchInput> _validator;
         private readonly ISearchServiceProvider _searchService;
-        private readonly GoogleSettings _googleSettings;
+        private readonly ISearchDtoMapper _mapper;
         public SearchController(IValidator<SearchInput> validator, ISearchServiceProvider searchService,
-            IOptions<GoogleSettings> googleSettings)
+            ISearchDtoMapper mapper)
         {
             _validator = validator;
             _searchService = searchService;
-            _googleSettings = googleSettings.Value;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -35,17 +30,7 @@ namespace SearchAPI.Controllers
                 return BadRequest(validationResult);
             }
 
-            var url = _googleSettings.URL;
-            var parentDiv = _googleSettings.PatternMatch;
-            parentDiv = StringHelper.ReplaceQuot(parentDiv);
-
-            var dto = new SearchInputDto
-            {
-                PageSource = string.Empty,
-                Input = input,
-                ParentDivPattern = @parentDiv,
-                Url = string.Concat(url, UrlEncoder.Default.Encode(input.SearchTerm))
-            };
+            var dto = _mapper.Map(input);
 
             var res = await _searchService.GetSearchResult(dto);
             return Ok(res);
